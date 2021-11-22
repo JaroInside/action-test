@@ -25,5 +25,5 @@ jobs:
         release_name: ${{ steps.extract_version_name.outputs.version }}
         body: |
             ${{ steps.Changelog.outputs.changelog }}
-        draft: false
+        draft: true
         prerelease: false
