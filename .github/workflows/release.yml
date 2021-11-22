@@ -6,21 +6,14 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    steps:
-    - name: check headcommit message
-      id: commit
-      run: |
-        str="$(jq '.head_commit.message' $GITHUB_EVENT_PATH)"    # get the head_commit message
-        echo ::set-output name=title::${str%%\\n*} | tr -d '"'         # get the title
-        echo ::set-output name=body::${str##*\\n} | tr -d '"'         # get the body
-    - name: check value # confirm the value for check, you can ignore it.
-      run: |
-        echo ${{ steps.commit.outputs.title}}    
-        echo ${{ steps.commit.outputs.body}}
+    steps:    
     - uses: actions/checkout@v2
     - name: 버전 정보 추출
       run: echo "##[set-output name=version;]$(echo '${{ github.event.head_commit.message }}' | egrep -o '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}')"
       id: extract_version_name
+    - name: 추출 정보 확인
+      run: |
+        echo ${{ teps.extract_version_name.outputs.version }}    
     - name: Release 생성 
       uses: actions/create-release@latest
       env: 
@@ -29,6 +22,6 @@ jobs:
         tag_name: ${{ steps.extract_version_name.outputs.version }} 
         release_name: ${{ steps.extract_version_name.outputs.version }}
         body: |                                                                 # use the body
-            ${{ steps.commit.outputs.body}}
+            ${{ github.event.head_commit.message }}
         draft: false
         prerelease: false
