@@ -1,6 +1,6 @@
 name: Release Tag
 on:
-  push:
+  pull_request:
     branches:
       - main
 jobs:
@@ -11,16 +11,19 @@ jobs:
     - name: 버전 정보 추출
       run: echo "##[set-output name=version;]$(echo '${{ github.event.head_commit.message }}' | egrep -o '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}')"
       id: extract_version_name
-    - name: Build Changelog
-      id: github_release
-      uses: mikepenz/release-changelog-builder-action@v1
+    - name: Changelog 추출
+      uses: Bullrich/generate-release-changelog@master
+      id: Changelog
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        REPO: ${{ github.repository }}
     - name: Release 생성 
-      uses: actions/create-release@v1
+      uses: actions/create-release@latest
       env: 
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with: 
         tag_name: ${{ steps.extract_version_name.outputs.version }} 
         release_name: ${{ steps.extract_version_name.outputs.version }}
-        body: ${{steps.github_release.outputs.changelog}}
+        body: |
+            ${{ steps.Changelog.outputs.changelog }}
+        draft: false
+        prerelease: false
