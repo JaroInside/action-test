@@ -13,7 +13,7 @@ jobs:
       id: extract_version_name
     - name: 추출 정보 확인
       run: |
-        echo ${{ teps.extract_version_name.outputs.version }}    
+        echo ${{ steps.extract_version_name.outputs.version }}    
     - name: Release 생성 
       uses: actions/create-release@latest
       env: 
