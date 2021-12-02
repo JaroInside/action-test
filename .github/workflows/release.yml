@@ -30,7 +30,7 @@ jobs:
       uses: devmasx/merge-branch@master
       with: 
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-        label_name: 'Sync develop with main - ${{ steps.extract_version_name.outputs.version }}'
+        description: 'Sync develop with main - ${{ steps.extract_version_name.outputs.version }}'
         type: now
         from_branch: main
         target_branch: develop
@@ -38,7 +38,7 @@ jobs:
       uses: devmasx/merge-branch@master
       with:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-        label_name: 'Sync release/www with main - ${{ steps.extract_version_name.outputs.version }}'
+        description: 'Sync release/www with main - ${{ steps.extract_version_name.outputs.version }}'
         type: now
         from_branch: main
         target_branch: release/www
@@ -46,7 +46,7 @@ jobs:
       uses: devmasx/merge-branch@master
       with:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-        label_name: 'Sync release/blog with main - ${{ steps.extract_version_name.outputs.version }}'
+        description: 'Sync release/blog with main - ${{ steps.extract_version_name.outputs.version }}'
         type: now
         from_branch: main
         target_branch: release/blog
@@ -54,7 +54,7 @@ jobs:
       uses: devmasx/merge-branch@master
       with:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-        label_name: 'Sync release/docs with main - ${{ steps.extract_version_name.outputs.version }}'
+        description: 'Sync release/docs with main - ${{ steps.extract_version_name.outputs.version }}'
         type: now
         from_branch: main
         target_branch: release/docs
