@@ -33,6 +33,13 @@ jobs:
         type: now
         from_branch: main
         target_branch: develop
+    - name: Sync release/www with main
+      uses: devmasx/merge-branch@master
+      with:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        type: now
+        from_branch: main
+        target_branch: release/www
     - name: Sync release/blog with main
       uses: devmasx/merge-branch@master
       with:
