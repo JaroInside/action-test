@@ -5,6 +5,7 @@ on:
       - main
 jobs:
   build:
+    if: "!contains(github.event.head_commit.message, 'skip ci')"
     runs-on: ubuntu-latest
     steps:    
     - uses: actions/checkout@v2
@@ -21,7 +22,7 @@ jobs:
       with: 
         tag_name: ${{ steps.extract_version_name.outputs.version }} 
         release_name: ${{ steps.extract_version_name.outputs.version }}
-        body: |                                                                 # use the body
+        body: |
             ${{ github.event.head_commit.message }}
         draft: false
         prerelease: false
