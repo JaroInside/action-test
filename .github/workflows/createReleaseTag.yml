@@ -43,12 +43,12 @@ jobs:
         draft: false
         prerelease: false
 
-    # - name: Slack notification success
-    #   uses: Ilshidur/action-slack@2.1.0
-    #   env:
-    #     SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
-    #     SLACK_USERNAME: ${{ github.actor }}
-    #     SLACK_CHANNEL: web-experience-alert
-    #     SLACK_AVATAR: repository
-    #   with:
-    #     args: "Website ${{ steps.extract.outputs.version }}\n${{ steps.extract.outputs.message }}"
+    - name: Slack notification success
+      uses: Ilshidur/action-slack@2.1.0
+      env:
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+        SLACK_USERNAME: ${{ github.actor }}
+        SLACK_CHANNEL: web-experience-alert
+        SLACK_AVATAR: repository
+      with:
+        args: "Website ${{ steps.extract_version.outputs.version }}\n\n```${{ env.Extract_Message }}```"
