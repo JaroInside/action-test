@@ -76,7 +76,7 @@ jobs:
       env:
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
         SLACK_USERNAME: ${{ github.actor }}
-        SLACK_CHANNEL: release
+        SLACK_CHANNEL: web-experience-alert
       with:
         args: 'Successfully synchronized branches.'
 
@@ -87,7 +87,7 @@ jobs:
       env:
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
         SLACK_USERNAME: ${{ github.actor }}
-        SLACK_CHANNEL: release
+        SLACK_CHANNEL: web-experience-alert
       with:
         args: 'Failed to synchronize branches.'
       if: failure()
