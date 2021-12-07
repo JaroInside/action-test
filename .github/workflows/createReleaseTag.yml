@@ -1,0 +1,32 @@
+name: Create A Release Tag
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    if: "!contains(github.event.head_commit.message, 'skip tag')"
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout source code
+      uses: actions/checkout@v2
+
+    - name: Extract version information
+      run: echo "##[set-output name=version;]$(echo '${{ github.event.head_commit.message }}' | egrep -o '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}')"
+      id: extract_version
+
+    - name: Check the extraction information
+      run: |
+        echo ${{ steps.extract_version.outputs.version }}    
+
+    - name: Create Release
+      uses: actions/create-release@latest
+      env: 
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with: 
+        tag_name: ${{ steps.extract_version.outputs.version }} 
+        release_name: ${{ steps.extract_version.outputs.version }}
+        body: |
+            ${{ github.event.head_commit.message }}
+        draft: false
+        prerelease: false
