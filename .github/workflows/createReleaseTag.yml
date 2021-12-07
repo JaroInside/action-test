@@ -23,7 +23,7 @@ jobs:
     - name: Extract message information
       run: |
         echo "Extract_Message<<EOF" >> $GITHUB_ENV
-        echo '${{ github.event.head_commit.message }}' | egrep -o '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' >> $GITHUB_ENV
+        echo '${{ github.event.head_commit.message }}' | egrep -v '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' >> $GITHUB_ENV
         echo "EOF" >> $GITHUB_ENV
       id: extract_message
 
