@@ -20,6 +20,7 @@ jobs:
     - name: Check the extraction version information
       run: |
         echo ${{ steps.extract.outputs.version }}
+        echo ${{ steps.extract.outputs.message }}
 
     - name: Create Release
       uses: actions/create-release@latest
