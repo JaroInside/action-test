@@ -11,10 +11,9 @@ jobs:
     - name: Checkout source code
       uses: actions/checkout@v2
 
-    - name: Extract version information
-      run: echo "##[set-output name=version;]$(echo '${{ github.event.head_commit.message }}' | egrep -v '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}')"
-      id: extract_version
+    - name: Extract information
+      run: echo "##[set-output name=message;]$(echo '${{ github.event.head_commit.message }}' | egrep -v '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}')"
+      id: extract
 
-    - name: Check the extraction information
-      run: |
-        echo ${{ steps.extract_version.outputs.version }}
+    - name: Check the extraction version information
+      run: echo ${{ steps.extract.outputs.message }}
