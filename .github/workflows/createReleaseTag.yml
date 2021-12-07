@@ -11,12 +11,25 @@ jobs:
     - name: Checkout source code
       uses: actions/checkout@v2
 
-    - name: Extract information
-      run: echo "##[set-output name=version;]$(echo '${{ github.event.head_commit.message }}' | egrep -o '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}')"
-      id: extract
+    - name: Extract version information
+      run: |
+        echo "##[set-output name=version;]$(echo '${{ github.event.head_commit.message }}' | egrep -o '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}')"
+      id: extract_version
 
     - name: Check the extraction version information
-      run: echo ${{ steps.extract.outputs.version }}
+      run: |
+        echo ${{ steps.extract.outputs.version }}
+
+    - name: Extract message information
+      run: |
+        echo "Extract_Message<<EOF" >> $GITHUB_ENV
+        echo '${{ github.event.head_commit.message }}' | egrep -o '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' >> $GITHUB_ENV
+        echo "EOF" >> $GITHUB_ENV
+      id: extract_message
+
+    - name: Check the extraction message information
+      run: |
+        echo "The string is: ${{ env.Extract_Message }}"
 
     - name: Create Release
       uses: actions/create-release@latest
@@ -26,7 +39,7 @@ jobs:
         tag_name: ${{ steps.extract.outputs.version }} 
         release_name: ${{ steps.extract.outputs.version }}
         body: |
-            $(echo '${{ github.event.head_commit.message }}' | egrep -o '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}')
+            ${{ env.Extract_Message }}
         draft: false
         prerelease: false
 
