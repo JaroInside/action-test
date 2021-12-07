@@ -4,7 +4,7 @@ on:
     branches:
       - main
 jobs:
-  release/www:
+  release_www:
     runs-on: ubuntu-latest
     steps:
       - name: Sync release/www with main
@@ -50,7 +50,7 @@ jobs:
           args: 'Failed to synchronize branches - [develop].'
         if: failure()
 
-  hotfix/1:
+  hotfix_1:
     runs-on: ubuntu-latest
     steps:
       - name: Sync hotfix/1 with main
@@ -73,7 +73,7 @@ jobs:
           args: 'Failed to synchronize branches - [hotfix/1].'
         if: failure()
 
-  release/blog:
+  release_blog:
     runs-on: ubuntu-latest
     steps:
       - name: Sync release/blog with main
@@ -96,7 +96,7 @@ jobs:
           args: 'Failed to synchronize branches - [release/blog].'
         if: failure()
 
-  release/docs:
+  release_docs:
     runs-on: ubuntu-latest
     steps:
       - name: Sync release/docs with main
