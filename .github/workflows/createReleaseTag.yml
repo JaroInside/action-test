@@ -25,6 +25,8 @@ jobs:
 
     - name: Check the extraction message information
       run: |
+        echo ${{ steps }}
+        echo ${{ steps.extract_message }}
         echo ${{ steps.extract_message.outputs.message }}
 
     - name: Create Release
