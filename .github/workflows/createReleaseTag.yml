@@ -36,6 +36,6 @@ jobs:
       env:
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
         SLACK_USERNAME: ${{ github.actor }}
-        SLACK_CHANNEL: release
+        SLACK_CHANNEL: web-experience-alert
       with:
-        args: 'Github Action Test - {{ github.event.head_commit.message }}'
+        args: ${{ github.event.head_commit.message }}
