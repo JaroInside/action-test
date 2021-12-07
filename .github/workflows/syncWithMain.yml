@@ -1,0 +1,70 @@
+name: Sync With Main
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout source code
+      uses: actions/checkout@v2
+
+    - name: Sync release/www with main
+      if: always()
+      uses: devmasx/merge-branch@master
+      with:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        message: 'Sync release/www with main'
+        type: now
+        from_branch: main
+        target_branch: release/www
+
+    - name: Sync develop with main
+      if: always()
+      uses: devmasx/merge-branch@master
+      with: 
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        message: 'Sync develop with main'
+        type: now
+        from_branch: main
+        target_branch: develop
+
+    - name: Sync hotfix/1 with main
+      if: always()
+      uses: devmasx/merge-branch@master
+      with: 
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        message: 'Sync hotfix/1 with main'
+        type: now
+        from_branch: main
+        target_branch: hotfix/1
+    - name: Sync release/blog with main
+      if: always()
+      uses: devmasx/merge-branch@master
+      with:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        message: 'Sync release/blog with main'
+        type: now
+        from_branch: main
+        target_branch: release/blog
+
+    - name: Sync release/docs with main
+      if: always()
+      uses: devmasx/merge-branch@master
+      with:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        message: 'Sync release/docs with main'
+        type: now
+        from_branch: main
+        target_branch: release/docs
+
+    - name: Sync qa with main
+      if: always()
+      uses: devmasx/merge-branch@master
+      with: 
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        message: 'Sync qa with main'
+        type: now
+        from_branch: main
+        target_branch: qa
