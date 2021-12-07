@@ -24,7 +24,7 @@ jobs:
           SLACK_CHANNEL: web-experience-alert
           SLACK_AVATAR: repository
         with:
-          args: 'Failed to synchronize branches - [release/www].'
+          args: 'Failed to synchronize branches - `[release/www]`.'
         if: failure()
 
   develop:
@@ -47,7 +47,7 @@ jobs:
           SLACK_CHANNEL: web-experience-alert
           SLACK_AVATAR: repository
         with:
-          args: 'Failed to synchronize branches - [develop].'
+          args: 'Failed to synchronize branches - `[develop]`.'
         if: failure()
 
   hotfix_1:
@@ -70,7 +70,7 @@ jobs:
           SLACK_CHANNEL: web-experience-alert
           SLACK_AVATAR: repository
         with:
-          args: 'Failed to synchronize branches - [hotfix/1].'
+          args: 'Failed to synchronize branches - `[hotfix/1]`.'
         if: failure()
 
   release_blog:
@@ -93,7 +93,7 @@ jobs:
           SLACK_CHANNEL: web-experience-alert
           SLACK_AVATAR: repository
         with:
-          args: 'Failed to synchronize branches - [release/blog].'
+          args: 'Failed to synchronize branches - `[release/blog]`.'
         if: failure()
 
   release_docs:
@@ -116,7 +116,7 @@ jobs:
           SLACK_CHANNEL: web-experience-alert
           SLACK_AVATAR: repository
         with:
-          args: 'Failed to synchronize branches - [release/docs].'
+          args: 'Failed to synchronize branches - `[release/docs]`.'
         if: failure()
 
   qa:
@@ -139,5 +139,5 @@ jobs:
           SLACK_CHANNEL: web-experience-alert
           SLACK_AVATAR: repository
         with:
-          args: 'Failed to synchronize branches - [qa].'
+          args: 'Failed to synchronize branches - `[qa]`.'
         if: failure()
