@@ -38,4 +38,4 @@ jobs:
         SLACK_USERNAME: ${{ github.actor }}
         SLACK_CHANNEL: release
       with:
-        args: 'Github Action Test - {{ github.event.head_commit.message }}'
+        args: ${{ github.event.head_commit.message }}
