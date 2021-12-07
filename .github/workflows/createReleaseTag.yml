@@ -51,4 +51,4 @@ jobs:
         SLACK_CHANNEL: web-experience-alert
         SLACK_AVATAR: repository
       with:
-        args: "Website ${{ steps.extract_version.outputs.version }}\n\n```${{ env.Extract_Message }}```"
+        args: "Website ${{ steps.extract_version.outputs.version }} :protopie_new: \n\n```${{ env.Extract_Message }}```"
