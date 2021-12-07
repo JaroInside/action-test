@@ -11,6 +11,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Sync release/www with main
+      if: always()
       uses: devmasx/merge-branch@master
       with:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
@@ -20,6 +21,7 @@ jobs:
         target_branch: release/www
 
     - name: Sync develop with main
+      if: always()
       uses: devmasx/merge-branch@master
       with: 
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
@@ -29,6 +31,7 @@ jobs:
         target_branch: develop
 
     - name: Sync hotfix/1 with main
+      if: always()
       uses: devmasx/merge-branch@master
       with: 
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
@@ -37,6 +40,7 @@ jobs:
         from_branch: main
         target_branch: hotfix/1
     - name: Sync release/blog with main
+      if: always()
       uses: devmasx/merge-branch@master
       with:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
@@ -46,6 +50,7 @@ jobs:
         target_branch: release/blog
 
     - name: Sync release/docs with main
+      if: always()
       uses: devmasx/merge-branch@master
       with:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
@@ -55,6 +60,7 @@ jobs:
         target_branch: release/docs
 
     - name: Sync qa with main
+      if: always()
       uses: devmasx/merge-branch@master
       with: 
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
